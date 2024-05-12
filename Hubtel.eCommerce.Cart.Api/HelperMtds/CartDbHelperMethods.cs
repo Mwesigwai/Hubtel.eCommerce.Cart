@@ -29,7 +29,7 @@ namespace Hubtel.eCommerce.Cart.Api.HelperMtds
             var existingItem =
                _context
                 .Cart.Find(item.ItemId);
-            if (existingItem != null)
+            if (existingItem is not null)
             {
                 existingItem.Quantity += item.Quantity;
                 _context.SaveChanges();
