@@ -12,11 +12,16 @@ namespace Hubtel.eCommerce.Cart.Tests.Tests.TestServices
     {
         static public CartDbContext GetDbContext()
         {
+            CartDbContext dbcontext = null!;
             var options = new DbContextOptionsBuilder<CartDbContext>()
                 .UseInMemoryDatabase("TestDb")
                 .Options;
-            var dbcontext = new CartDbContext(options);
-            dbcontext.Database.EnsureCreated();
+            if(dbcontext is null)
+            {
+                dbcontext = new CartDbContext(options);
+                dbcontext.Database.EnsureCreated();
+                return dbcontext;
+            }
             return dbcontext;
         }
     }
