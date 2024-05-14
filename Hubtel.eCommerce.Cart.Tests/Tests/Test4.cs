@@ -1,13 +1,14 @@
 ﻿using FluentAssertions;
 using Hubtel.eCommerce.Cart.Api.HelperMtds;
 using Hubtel.eCommerce.Cart.Api.Services;
+using Hubtel.eCommerce.Cart.Tests.Tests.TestServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hubtel.eCommerce.Cart.Tests.Tests.TestServices
+namespace Hubtel.eCommerce.Cart.Tests.Tests
 {
     public class Test4
     {
@@ -25,8 +26,8 @@ namespace Hubtel.eCommerce.Cart.Tests.Tests.TestServices
                 service.AddItem(item);
             }
 
-           
-            
+
+
             // Act and assert
             var items = service.GetByQuantity(testQty);
             foreach (var item in items)
