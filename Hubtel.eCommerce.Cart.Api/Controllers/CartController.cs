@@ -27,7 +27,7 @@ namespace Hubtel.eCommerce.Cart.Api.Controllers
 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [HttpGet("quantity{quantity:int}")]
+        [HttpGet("quantity/{quantity:int}")]
         public ActionResult<ICartItem> GetByQuatity( int quantity )
         {
             if(quantity > 0)
@@ -37,8 +37,8 @@ namespace Hubtel.eCommerce.Cart.Api.Controllers
 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [HttpGet("{id:int}")]
-        public ActionResult<IEnumerable<ICartItem>> Get(int id)
+        [HttpGet("{id:int}",Name ="GetItem")]
+        public ActionResult<ICartItem> Get(int id)
         {
             if(id > 0)
                 return Ok(_service.GetById(id));
@@ -55,7 +55,7 @@ namespace Hubtel.eCommerce.Cart.Api.Controllers
             {
                 var result =_service.AddItem(value);
                 if(result == true)
-                  return Ok("Item saved");
+                  return CreatedAtRoute("GetItem", new {id = value.ItemId}, value);
                 return BadRequest("Inputs were not valid");
             }
             return BadRequest(ModelState);
