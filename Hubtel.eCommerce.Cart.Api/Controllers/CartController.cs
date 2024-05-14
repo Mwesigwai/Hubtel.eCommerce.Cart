@@ -67,7 +67,7 @@ namespace Hubtel.eCommerce.Cart.Api.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
 
-        [HttpDelete("{id:int}")]
+        [HttpDelete("delete/{id:int}")]
         public ActionResult<string> Delete(int id)
         {
             if (_service.Remove(id).itemRemoved)
