@@ -35,6 +35,36 @@ namespace Hubtel.eCommerce.Cart.Tests.Tests.TestServices
             return cartitem;
         }
 
+        static public IEnumerable<ICartItem> GetForTest4()
+        {
+            return new List<ICartItem>
+            {
+                new CartItem
+                {
+                    PhoneNumber = "lflflflflf",
+                    ItemId = 5,
+                    ItemName = "Fish",
+                    UnitPrice=200,
+                    Quantity = 3
+                },
+                new CartItem
+                {
+                    PhoneNumber = "lflflflflf",
+                    ItemId = 6,
+                    ItemName = "Eggs",
+                    UnitPrice=200,
+                    Quantity = 3
+                },
+                new CartItem
+                {
+                    PhoneNumber = "lflflflflf",
+                    ItemId = 7,
+                    ItemName = "Meat",
+                    UnitPrice=200,
+                    Quantity = 3
+                }
+            };
+        }
 
         static public ICartItem GetInvalid()
         {
