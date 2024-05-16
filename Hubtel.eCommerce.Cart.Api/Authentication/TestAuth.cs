@@ -52,7 +52,7 @@ namespace Hubtel.eCommerce.Cart.Api.Authentication
             var claims = new[]
             {
                 new Claim(ClaimTypes.Name,username),
-                new Claim(ClaimTypes.Role, "Admin")
+                new Claim(ClaimTypes.Role, "User")
             };
             var claimsIdentity = new ClaimsIdentity(claims, "Basic");
             var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);

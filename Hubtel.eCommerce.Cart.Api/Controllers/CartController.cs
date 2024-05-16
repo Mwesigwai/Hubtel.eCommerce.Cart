@@ -53,7 +53,9 @@ namespace Hubtel.eCommerce.Cart.Api.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [HttpPost]
+        [Authorize(Roles = "Dev")]
         public ActionResult Post([FromBody] CartItem value)
         {
             if(ModelState.IsValid)
