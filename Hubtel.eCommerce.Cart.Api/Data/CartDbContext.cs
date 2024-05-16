@@ -7,5 +7,6 @@ namespace Hubtel.eCommerce.Cart.Api.Data
         :DbContext(options)
     {
         public DbSet<CartItem> Cart { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }   

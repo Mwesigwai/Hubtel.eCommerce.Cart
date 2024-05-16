@@ -1,5 +1,6 @@
 ﻿using Hubtel.eCommerce.Cart.Api.Data;
 using Hubtel.eCommerce.Cart.Api.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Hubtel.eCommerce.Cart.Api.HelperMtds
@@ -69,6 +70,19 @@ namespace Hubtel.eCommerce.Cart.Api.HelperMtds
                     .Where
                     (item => item.Quantity == quantity);
             return null!;
+        }
+
+        public IUser GetUser(string username)
+        {
+            if (username is not null)
+                return _context.Users.FirstOrDefault(u => u.Username == username)!;
+            return null!;
+        }
+
+        public void AddUser(string username, string password, string role)
+        {
+            _context.Users.Add(new User { Username = username, Password = password, Role = role });
+            _context.SaveChanges();
         }
 
         public (string status,bool itemRemoved) RemoveItem(int itemId)

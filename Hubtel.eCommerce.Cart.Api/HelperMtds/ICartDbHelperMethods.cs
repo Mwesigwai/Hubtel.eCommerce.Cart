@@ -5,6 +5,8 @@ namespace Hubtel.eCommerce.Cart.Api.HelperMtds
     public interface ICartDbHelperMethods
     {
         object AddToCart(ICartItem item);
+        void AddUser(string username, string password, string role);
+        IUser GetUser(string username);
         object IncrementQuantity(ICartItem item);
         bool IsValid(ICartItem item);
         bool ItemExists(ICartItem? itemFromDatabase);

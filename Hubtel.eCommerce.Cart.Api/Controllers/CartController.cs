@@ -1,12 +1,14 @@
 ﻿using Hubtel.eCommerce.Cart.Api.Data;
 using Hubtel.eCommerce.Cart.Api.Models;
 using Hubtel.eCommerce.Cart.Api.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Hubtel.eCommerce.Cart.Api.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class CartController
@@ -16,7 +18,8 @@ namespace Hubtel.eCommerce.Cart.Api.Controllers
         //CartDbContext _dbContext = dbContext;
         ICartDatabaseService _service = cartDatabaseService;
 
-       
+
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [HttpGet]
         public ActionResult<IEnumerable<ICartItem>> Get()
@@ -24,7 +27,7 @@ namespace Hubtel.eCommerce.Cart.Api.Controllers
             return Ok(_service.GetItems());
         }
 
-
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpGet("quantity/{quantity:int}")]
@@ -35,6 +38,7 @@ namespace Hubtel.eCommerce.Cart.Api.Controllers
             return BadRequest("Quantity should be above 0");
         }
 
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpGet("{id:int}",Name ="GetItem")]
@@ -46,6 +50,7 @@ namespace Hubtel.eCommerce.Cart.Api.Controllers
         }
 
         // POST api/<CartController>
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpPost]
@@ -64,9 +69,9 @@ namespace Hubtel.eCommerce.Cart.Api.Controllers
 
 
         // DELETE api/<CartController>/5
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-
         [HttpDelete("delete/{id:int}")]
         public ActionResult<string> Delete(int id)
         {
