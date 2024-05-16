@@ -42,7 +42,7 @@ namespace Hubtel.eCommerce.Cart.Api.Authentication
             var password = credentials[1];
             
             //adding users from here for test purposes only
-            _helpers.AddUser("isaac", "4526","Admin");
+            _helpers.AddUser("isaac", "4526", role: "User");
             var user = _helpers.GetUser(username);
             
             if (!username.Equals(user?.Username) && !password.Equals(user?.Password))
